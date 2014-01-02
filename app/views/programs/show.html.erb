@@ -1,0 +1,24 @@
+
+<p id="notice"><%= notice %></p>
+
+<center><fieldset><p>
+  <h2><strong>Program Type:</strong></h2>
+  <h3><%= @program.name %></h3>
+</p>
+
+<p>
+  <strong>Description:</strong><br>
+  <%= @program.description %>
+</p>
+
+<%= link_to 'HomePage', welcomes_path %> |
+</fieldset>
+<%= render :partial => "comments/form" %>
+<%#= render 'comments/show' %>
+<fieldset>
+	<center><h2>comments</h2>
+<%#= @comment= Program.first.comments.all%>
+<%= @comment= Program.first.comments.all.map{|e| e.description}%>
+</center></fieldset>
+
+</center>

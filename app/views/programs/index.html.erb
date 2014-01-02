@@ -1,0 +1,11 @@
+<center><h1><u>Listing Programs</u></h1></center>
+
+<fieldset><center>
+      <h2><u><i>Different Programs</i></u></h2>
+       <% @programs.each do |program| %>
+       <h3><%= link_to program.name, program %></h3><br>
+       <% end %>
+       <h3><%= link_to "HomePage", welcomes_path %></h3><br>
+       <h3><%#= link_to "Comments", comments_path %></h3>
+</center></fieldset>
+

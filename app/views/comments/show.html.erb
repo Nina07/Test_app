@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @comment.description %>
+</p>
+<% @c=Comment.all %>
+<%= @c.map {|i| i.description} %>
+<%#= link_to "Back",program_url %>
+<%#= link_to "Back", controller: "programs_controller", action: "show", id: @program_id %>
+

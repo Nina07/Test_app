@@ -1,0 +1,9 @@
+<fieldset><center><u><h1>Listing events</h1></u><br>
+
+ <h2>Type of Events</h2><br>
+    <% @events.each do |event| %>
+    <h3><%= link_to event.name, event %></h3>
+    <% end %>
+  <h3><%= link_to "HomePage" , welcomes_path%></h3><br>
+  <h3><%#= link_to "Comments", comments_path %></h3>
+</center></fieldset>

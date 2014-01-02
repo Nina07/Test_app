@@ -1,0 +1,23 @@
+
+<p id="notice"><%= notice %></p>
+
+<fieldset><p><center>
+  <strong>Name:</strong>
+  <%= @event.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @event.description %><br>
+  <%= link_to 'HomePage', welcomes_path %> 
+</p>
+
+
+</center></fieldset>
+<%= render :partial => "comments/form" %>
+<fieldset>
+	<center><h2>comments</h2>
+<%= @comment= Event.first.comments.all.map{|e| e.description}%>
+</center></fieldset>
+
+<%#= render "comments/show" %>
