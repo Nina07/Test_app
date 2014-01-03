@@ -10,11 +10,15 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
+    #@comment= Comment.new(comment_params)
+    @comment = @event.comments.new(:description=>params[:description])
+    
   end
 
   # GET /events/new
   def new
     @event = Event.new
+    @comment= Comment.new
   end
 
   # GET /events/1/edit
@@ -25,7 +29,6 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
-
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }

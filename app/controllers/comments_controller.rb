@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.json
   def index
-    #@comments = Comment.all
+    @comments = Comment.all
   end
 
   # GET /comments/1
@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   def new
-    #@comment = Comment.new
+    @comment = Comment.new
   end
 
   # GET /comments/1/edit
@@ -24,20 +24,21 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-
-    # @pm=Program.first
-    # @comment = Comment.new(comment_params)
-    #  @comment= @pm.comments.create(:program_id=>params[:id],:description=>params["comment"]["description"])
-    # respond_to do |format|
-    #   if @comment.save
-    #     format.html { redirect_to @pm, notice: 'Comment was successfully created.' }
-    #     format.json { render action: 'show', status: :created, location: @comment }
-    #redirect_to program_url
-    #   else
-    #     format.html { render action: 'new' }
-    #     format.json { render json: @comment.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    #@comment = @program.comments.new(:description=>params[:description])
+    # @c=@program.comments.all
+    #@comment= raise params.inspect
+     @comment = Comment.create(comment_params)
+    @comment= Program.find(params["comment"]["program_id"]).comments.create(:description=>params["comment"]["description"])
+    #puts "#{params["comment"]["program_id"]} >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" 
+    respond_to do |format|
+      if @comment.save
+        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @comment }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /comments/1

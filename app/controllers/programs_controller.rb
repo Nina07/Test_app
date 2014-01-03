@@ -5,18 +5,20 @@ class ProgramsController < ApplicationController
   # GET /programs.json
   def index
     @programs = Program.all
-
   end
 
   # GET /programs/1
   # GET /programs/1.json
   def show
+      
+     @comment = @program.comments.new(:description=>params[:description])
+    # @c=@program.comments.all
+    
   end
 
   # GET /programs/new
   def new
     @program = Program.new
-    @comment= Comment.new
   end
 
   # GET /programs/1/edit
@@ -27,7 +29,7 @@ class ProgramsController < ApplicationController
   # POST /programs.json
   def create
     @program = Program.new(program_params)
-
+    
     respond_to do |format|
       if @program.save
         format.html { redirect_to @program, notice: 'Program was successfully created.' }
@@ -35,19 +37,6 @@ class ProgramsController < ApplicationController
       else
         format.html { render action: 'new' }
         format.json { render json: @program.errors, status: :unprocessable_entity }
-      end
-    end
-
-    @comment= Comment.new(comment_params)
-    @comment= @program.comments.create(:program_id=>params[:id],:description=>params["comment"]["description"])
-    respond_to do |format|
-      if @comment.save
-        format.html { redirect_to @program, notice: 'Comment was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @comment }
-        #redirect_to @pm
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
   end
