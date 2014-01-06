@@ -11,8 +11,8 @@ class ProgramsController < ApplicationController
   # GET /programs/1.json
   def show
       
-     @comment = @program.comments.new(:description=>params[:description])
-    # @c=@program.comments.all
+    # @comment = @program.comments.new(:description=>params[:description])
+     @c=@program.comments.all
     
   end
 
